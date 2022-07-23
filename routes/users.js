@@ -3,6 +3,8 @@ const router = express.Router('')
 const User = require('../models/mdusers')
 const Emp = require('../models/mdemps')
 
+
+// Create User
 router.get('/createUser', function(req, res){
     res.render('users/createUser')
 })
@@ -21,7 +23,13 @@ router.post('/newUser', function(req, res){
     }).catch(function(err){
         console.log("Falha ao cadastrar usuário: "+ err)
     })
+})
 
+// Search Users
+router.get('/searchUser', function(req, res){
+    User.findAll().then(function (dados){
+        res.render('users/searchUser', {dados: dados})
+    })
 })
 
 // Exports
