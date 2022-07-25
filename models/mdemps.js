@@ -12,6 +12,15 @@ const newEmp = db.sequelize.define('emps', {
         type: db.Sequelize.INTEGER,
         references: 'users',
         referencesKey: 'id'
+    },
+    cpf: {
+        type: db.Sequelize.STRING
+    },
+    departamento: {
+        type: db.Sequelize.STRING
+    },
+    cargo: {
+        type: db.Sequelize.STRING
     }
 })
 

@@ -15,7 +15,10 @@ router.post('/newUser', function(req, res){
         pass: req.body.pass,
     }).then(function(result){
         Emp.create({
-            idUser: result.id
+            idUser: result.id,
+            cpf: req.body.cpf,
+            departamento: req.body.departamento,
+            cargo: req.body.cargo
         }).then(function(){
             res.redirect('/createUser')
             console.log("User criado com sucesso")
@@ -30,6 +33,7 @@ router.get('/searchUser', function(req, res){
     User.findAll().then(function (dados){
         res.render('users/searchUser', {dados: dados})
     })
+
 })
 
 // Exports
