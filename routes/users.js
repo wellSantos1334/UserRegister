@@ -30,10 +30,19 @@ router.post('/newUser', function(req, res){
 
 // Search Users
 router.get('/searchUser', function(req, res){
-    User.findAll().then(function (dados){
+    User.findAll({
+        order: [['id', 'DESC']],
+    }).then(function (dados){
         res.render('users/searchUser', {dados: dados})
     })
+})
 
+router.get('/searchEmp', function(req, res){
+    Emp.findAll({
+        order: [['id', 'DESC']],
+    }).then(function (dados){
+        res.render('users/searchEmp', {dados: dados})
+    })
 })
 
 // Exports

@@ -1,0 +1,14 @@
+<h1>Lista de funcionários:</h1>
+
+{{#each dados}}
+<div class="card">
+    <div class="card-body">
+        <h4>ID User: {{idUser}}</h4>
+        <small>CPF: {{cpf}}</small> <br>
+        <small>Departamento: {{departamento}}</small> <br>
+        <small>Cargo: {{cargo}}</small>
+    </div>
+</div>
+{{else}}
+
+{{/each}}
