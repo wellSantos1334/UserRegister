@@ -3,7 +3,9 @@
 {{#each dados}}
 <div class="card">
     <div class="card-body">
-        <h4>{{email}}</h4>
+        <h4>Email: {{email}}</h4>
+        <small>Senha: {{pass}}</small><br>
+        <a href='users/searchUser/edit/{{this.id}}'><button class="btn btn-success">Editar Usuário</button></a>
     </div>
 </div>
 {{else}}
