@@ -1,0 +1,17 @@
+<h1>Editar dados do funcionário</h1>
+<div class="card">
+    <div class="card-body">
+        <form action="/users/updatedEmp" method="POST">
+            <input type="hidden" name="id" value="{{updateEmp.id}}">
+            <label for="cpf">CPF:</label>
+            {{updatedEmp}}
+            <input type="cpf" name="cpf" id="cpf" placeholder="Insira seu novo CPF" class="form-control" value="{{updateEmp.cpf}}">
+            <label for="departamento">Departamento:</label>
+            <input type="text" name="departamento" id="departamento" placeholder="Insira seu novo departamento" class="form-control" value="{{updateEmp.departamento}}">
+            <label for="cargo">Cargo:</label>
+            <input type="text" name="cargo" id="cargo" placeholder="Insira seu novo cargo" class="form-control" value="{{updateEmp.cargo}}">
+            <br>
+            <button type="submit" class="btn btn-success">Editar</button>
+        </form>
+    </div>
+</div>

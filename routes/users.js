@@ -37,19 +37,10 @@ router.get('/searchUser', function (req, res) {
     })
 })
 
-// Search Emps
-router.get('/searchEmp', function (req, res) {
-    Emp.findAll({
-        order: [['id', 'DESC']],
-    }).then(function (dados) {
-        res.render('users/searchEmp', { dados: dados })
-    })
-})
 
 // Edit Users
 
 router.get('/users/searchUser/edit/:id', function (req, res) {
-
     User.findOne({
         where: {
             id: req.params.id
@@ -64,7 +55,6 @@ router.get('/users/searchUser/edit/:id', function (req, res) {
 })
 
 router.post('/users/updatedUser', function (req, res) {
-
     User.update({
         email: req.body.email,
         pass: req.body.pass
@@ -73,33 +63,59 @@ router.post('/users/updatedUser', function (req, res) {
             where: {
                 id: req.body.id
             }
-        }).then(function(){
+        }).then(function () {
             console.log("Usuário alterado com sucesso!")
             res.redirect('/searchUser')
+        }).catch(function(err){
+            console.log("Erro ao alterar dados do usuário: "+err)
+            res.redirect('/searchUser')
         })
-
-    // User.findOne({
-    //     where: {
-    //         id: req.body.id,
-            
-    //     }
-    // }).then(function (editUser) {
-    //     editUser.email = req.body.email
-    //     editUser.pass = req.body.pass
-
-    //     editUser.save().then(function(){
-    //         console.log("Sucesso ao editar usuário")
-    //         res.redirect('/users/searchUser')
-    //     }).catch(function(err){
-    //         console.log("Erro ao editar usuario: "+err)
-    //         res.redirect('/users/searchUser')
-    //     })
-
-    // }).catch(function (err) {
-    //     console.log("Erro no edit: "+err)
-    //     res.redirect('/searchUser')
-    // })
 })
+
+// Search Emps
+router.get('/searchEmp', function (req, res) {
+    Emp.findAll({
+        order: [['id', 'DESC']],
+    }).then(function (dados) {
+        res.render('users/searchEmp', { dados: dados })
+    })
+})
+
+// Edit Emps
+
+router.get('/users/searchEmp/edit/:id', function (req, res) {
+    Emp.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(function (updateEmp) {
+        res.render('users/editemps', { updateEmp: updateEmp })
+    }).catch(function (err) {
+        res.send("Usuário inexistente")
+        res.redirect('/users/editemps')
+    })
+
+})
+
+router.post('/users/updatedEmp', function (req, res) {
+    Emp.update({
+        cpf: req.body.cpf,
+        departamento: req.body.departamento,
+        cargo: req.body.cargo
+    },
+        {
+            where: {
+                id: req.body.id
+            }
+        }).then(function () {
+            console.log("Usuário alterado com sucesso!")
+            res.redirect('/searchEmp')
+        }).catch(function(err){
+            console.log("Erro ao alterar dados do funcionário: "+err)
+            res.redirect('/searchEmp')
+        })
+})
+
 
 // Exports
 module.exports = router
