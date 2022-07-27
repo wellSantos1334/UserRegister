@@ -73,7 +73,6 @@ router.post('/users/updatedUser', function (req, res) {
 })
 
 // Delete Users
-
 router.post('/users/delete', function(req, res){
     User.destroy({where: {id: req.body.id}}).then(function(){
         console.log("Usuário deletado com sucesso")
@@ -128,6 +127,16 @@ router.post('/users/updatedEmp', function (req, res) {
         })
 })
 
+// Delete Emps
+router.post('/emps/delete', function(req, res){
+    Emp.destroy({where: {id: req.body.id}}).then(function(){
+        console.log("Funcionário deletado com sucesso")
+        res.redirect('/searchEmp')
+    }).catch(function(err){
+        console.log("Erro ao tentar deletar o funcionário: "+err)
+        res.redirect('/searchEmp')
+    })
+})
 
 // Exports
 module.exports = router

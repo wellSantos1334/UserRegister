@@ -7,7 +7,11 @@
         <small>CPF: {{cpf}}</small> <br>
         <small>Departamento: {{departamento}}</small> <br>
         <small>Cargo: {{cargo}}</small> <br>
-         <a href='users/searchEmp/edit/{{this.id}}'><button class="btn btn-success">Editar Funcionário</button></a>
+        <a href='users/searchEmp/edit/{{this.id}}'><button class="btn btn-success">Editar Funcionário</button></a>
+        <form action="/emps/delete" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+        </form>
     </div>
 </div>
 {{else}}
