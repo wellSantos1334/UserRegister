@@ -5,7 +5,11 @@
     <div class="card-body">
         <h4>Email: {{email}}</h4>
         <small>Senha: {{pass}}</small><br>
-        <a href='users/searchUser/edit/{{this.id}}'><button class="btn btn-success">Editar Usuário</button></a>
+        <a href='users/searchUser/edit/{{this.id}}'><button class="btn btn-success mt-1">Editar Usuário</button></a>
+        <form action="/users/delete" method="POST">
+            <input type="hidden" name="id" value="{{this.id}}">
+            <button type="submit" class="btn btn-danger mt-2">Deletar</button>
+        </form>
     </div>
 </div>
 {{else}}

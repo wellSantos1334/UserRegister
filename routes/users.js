@@ -72,6 +72,18 @@ router.post('/users/updatedUser', function (req, res) {
         })
 })
 
+// Delete Users
+
+router.post('/users/delete', function(req, res){
+    User.destroy({where: {id: req.body.id}}).then(function(){
+        console.log("Usuário deletado com sucesso")
+        res.redirect('/searchUser')
+    }).catch(function(err){
+        console.log("Erro ao tentar deletar o usuário: "+err)
+        res.redirect('/searchUser')
+    })
+})
+
 // Search Emps
 router.get('/searchEmp', function (req, res) {
     Emp.findAll({
